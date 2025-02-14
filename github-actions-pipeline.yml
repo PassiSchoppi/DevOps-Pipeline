@@ -1,0 +1,21 @@
+name: GitHub Actions
+run-name: ${{ github.actor }} hat eine GitHub Actions Pipeline gestartet 🚀
+# Wird ausgeführt, wenn jemand einen Push ausführt.
+on: [push]
+jobs:
+  Colone-And-List:
+    # Wird auf einer Ubuntu Maschine ausgeführt.
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 Die Pipeline wurde durch ein ${{ github.event_name }} Event ausgelöst."
+      - run: echo "🐧 Die Pipeline läuft auf einem ${{ runner.os }} Server von GitHub!"
+      - run: echo "🔎 Ausgeführt wird der Branch ${{ github.ref }} des Repository ${{ github.repository }}."
+      # Zieht den Code vom Repository.
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 Das Repo ${{ github.repository }} wurde gecloned vom Runner."
+      # Ab hier kann mit dem Code gearbeitet werden.
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 Job hat den Status ${{ job.status }}."
