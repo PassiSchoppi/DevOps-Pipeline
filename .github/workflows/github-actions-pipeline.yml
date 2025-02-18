@@ -14,6 +14,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 Das Repo ${{ github.repository }} wurde gecloned vom Runner."
+      # Dependencies installieren
+      - name: NPM install
+        run: |
+          cd ./devops-pipeline/
+          npm i
       # Code Qualität sicherstellen
       - name: Lint Code
         run: |
