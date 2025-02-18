@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} hat eine GitHub Actions Pipeline gestartet 🚀
 # Wird ausgeführt, wenn jemand einen Push ausführt.
 on: [push]
 jobs:
-  Colone-And-List:
+  Lint-And-Build:
     # Wird auf einer Ubuntu Maschine ausgeführt.
     runs-on: ubuntu-latest
     steps:
