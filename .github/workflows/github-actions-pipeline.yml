@@ -14,8 +14,14 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 Das Repo ${{ github.repository }} wurde gecloned vom Runner."
-      # Ab hier kann mit dem Code gearbeitet werden.
-      - name: List files in the repository
+      # Code Qualität sicherstellen
+      - name: Lint Code
         run: |
-          ls ${{ github.workspace }}
+          cd ./devops-pipeline/
+          npm run lint
+      # Build
+      - name: NPM Build
+        run: |
+          cd ./devops-pipeline/
+          npm run build
       - run: echo "🍏 Job hat den Status ${{ job.status }}."

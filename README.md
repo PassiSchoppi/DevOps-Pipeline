@@ -21,3 +21,12 @@ npm i
 
 cd .\devops-pipeline\
 npm run dev
+
+## Prod Server
+
+npm run build
+npm run start
+
+## Linter
+
+npm run lint
