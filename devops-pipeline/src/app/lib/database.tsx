@@ -1,14 +1,15 @@
 'use server';
 
 
-const {Client} = require('pg')
+import { Client } from 'pg';
 
 const client = new Client({
     host: "localhost",
     user: "postgres",
     port: 5432,
-    password: "passwort",
+    password: "ka271700",
     database: "postgres"
 })
 
-module.exports = client
+export default client;
+
