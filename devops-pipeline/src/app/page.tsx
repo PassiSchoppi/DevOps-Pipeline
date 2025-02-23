@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
 
     return (
@@ -24,7 +22,7 @@ export default function Home() {
                         <label htmlFor="year" className="block">Jahr</label>
                         <input type="number" id="year" min="2024" defaultValue="2025" className="border p-2 w-20" />
                     </div>
-                    <button onclick="updateDate()" className="bg-blue-500 text-white px-4 py-2 rounded">Datum aktualisieren</button>
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded">Datum aktualisieren</button>
                 </div>
             </div>
 
@@ -32,58 +30,18 @@ export default function Home() {
             <div className="border p-4">
                 <h2 className="text-lg font-bold mb-4">Kalenderansicht</h2>
                 <div className="space-y-2" id="calendar">
-                    <!-- Stundenplan wird hier dynamisch generiert -->
                 </div>
             </div>
 
             {/* Ereignisformular */}
             <div className="mt-6 border p-4">
                 <h2 className="text-lg font-bold mb-4">Neues Ereignis erstellen</h2>
-                <form id="event-form" className="flex gap-4" onsubmit="handleEventSubmit(event)">
+                <form id="event-form" className="flex gap-4">
                     <input type="text" id="event-title" placeholder="Titel" className="border p-2" required />
                     <input type="time" id="event-time" className="border p-2" required />
                     <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">Erstellen</button>
                 </form>
             </div>
-
-            <script>
-                function updateDate() {
-                    const day = document.getElementById('day').value;
-                    const month = document.getElementById('month').value;
-                    const year = document.getElementById('year').value;
-                    const monthNames = ["Januar", "Februar", "März"];
-                    const selectedMonth = monthNames[month - 1];
-                    document.getElementById('selected-date').innerText = `Kalender für Montag ${day}. ${selectedMonth} ${year}`;
-                }
-
-                function renderCalendar() {
-                    const calendar = document.getElementById('calendar');
-                    calendar.innerHTML = '';
-                    for (let hour = 0; hour < 24; hour++) {
-                        const hourElement = document.createElement('div');
-                        hourElement.className = 'grid grid-cols-12 gap-2 items-center';
-                        hourElement.innerHTML = `
-                            <div class="col-span-2 text-right">${hour.toString().padStart(2, '0')}:00</div>
-                            <div class="col-span-10 border p-2" id="event-${hour}"></div>
-                        `;
-                        calendar.appendChild(hourElement);
-                    }
-                }
-
-                function handleEventSubmit(e) {
-                    e.preventDefault();
-                    const title = document.getElementById('event-title').value;
-                    const time = document.getElementById('event-time').value;
-                    const hour = parseInt(time.split(':')[0]);
-                    const eventSlot = document.getElementById(`event-${hour}`);
-                    if (eventSlot) {
-                        eventSlot.innerHTML = `<div class="bg-yellow-300 p-2">${title}</div>`;
-                    }
-                    document.getElementById('event-form').reset();
-                }
-
-                window.onload = renderCalendar;
-            </script>
         </div>
     );
 } 
